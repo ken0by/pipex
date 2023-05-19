@@ -6,7 +6,7 @@
 #    By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:48:57 by rofuente          #+#    #+#              #
-#    Updated: 2023/05/18 15:57:31 by rofuente         ###   ########.fr        #
+#    Updated: 2023/05/19 13:34:26 by rofuente         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,14 +46,14 @@ END = \033[0m
 all: $(OBJ_DIR) $(NAME)
 
 $(LIBFT) : $(LIBFT_PATH)
-	@make -C $(LIBFT_PATH)
+	@make -sC $(LIBFT_PATH)
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 $(OBJ_DIR)%.o:$(SRCU_DIR)%.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
@@ -61,16 +61,14 @@ $(NAME): $(OBJ) $(LIBFT)
 
 clean:
 	@$(RM) $(OBJ)
-	@make clean -C libft
-	@make clean -C mlx
+	@make clean -sC libft
 	@rm -rf $(OBJ_DIR)
 	@echo "$(R)All .o files removed$(DEF_COLOR)\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make fclean -C libft
-	@make clean -C mlx
-	@rm -f $(OBJ_DIR)
+	@make fclean -sC libft
+	@rm -rf $(OBJ_DIR)
 	@echo "$(R)Library .a file removed$(DEF_COLOR)\n"
 
 re: fclean all
