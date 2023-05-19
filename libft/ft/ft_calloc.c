@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 13:46:51 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/19 20:31:59 by rodro            ###   ########.fr       */
+/*   Created: 2023/01/17 18:38:25 by rofuente          #+#    #+#             */
+/*   Updated: 2023/03/28 13:09:37 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../include/libft.h"
 
-void	ft_free(char **s)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int	i;
+	void	*dst;
 
-	i = 0;
-	while (s[i])
+	dst = malloc(count * size);
+	if (!dst)
 	{
-		free (s[i]);
-		i++;
+		free (dst);
+		return (0);
 	}
-	free (s);
-}
-
-void	ft_error(char *s)
-{
-	ft_putstr_fd(s, STDERR_FILENO);
-	exit (EXIT_FAILURE);
+	ft_bzero(dst, count * size);
+	return (dst);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+         #
+#    By: rodro <rodro@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:48:57 by rofuente          #+#    #+#              #
-#    Updated: 2023/05/19 13:34:26 by rofuente         ###   ########.fr        #
+#    Updated: 2023/05/19 20:45:53 by rodro            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,9 @@ DEBUG	=	-g3 -fsanitize=address
 
 NAME	=	pipex
 
-SS	=	pipex.c
+SS	=	pipex.c utils.c ft_error.c
 
 SRC_DIR	=	./src/
-SRCU_DIR = ./utils/
 
 OBJ_DIR	=	./obj/
 OBJ_FILES	=	$(SS:.c=.o)
@@ -51,8 +50,6 @@ $(LIBFT) : $(LIBFT_PATH)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-$(OBJ_DIR)%.o:$(SRCU_DIR)%.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJ) $(LIBFT)

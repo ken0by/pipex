@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:51:31 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/19 14:25:33 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/05/19 20:43:50 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@
 # include <unistd.h>
 # include <sys/wait.h>
 
+/* ---------- FUNCIONES ---------- */
 /* FT_ERROR.C */
 void	ft_error(char *s);
+void	ft_free(char **s);
 
 /* UTILS.C */
 int	ft_open(char *file, int c);
+void	ft_command(char *command, char **com);
 
 # define RED     "\x1b[31m"
 # define GREEN   "\x1b[32m"

@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 13:46:51 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/19 20:31:59 by rodro            ###   ########.fr       */
+/*   Created: 2023/01/19 12:45:36 by rofuente          #+#    #+#             */
+/*   Updated: 2023/03/28 13:12:54 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../include/libft.h"
 
-void	ft_free(char **s)
+void	ft_striteri(char *s, void (*f) (unsigned int, char*))
 {
-	int	i;
+	int	x;
 
-	i = 0;
-	while (s[i])
+	x = 0;
+	while (s[x])
 	{
-		free (s[i]);
-		i++;
+		(*f)(x, &s[x]);
+		x++;
 	}
-	free (s);
-}
-
-void	ft_error(char *s)
-{
-	ft_putstr_fd(s, STDERR_FILENO);
-	exit (EXIT_FAILURE);
 }

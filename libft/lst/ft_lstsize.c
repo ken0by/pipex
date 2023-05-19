@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 13:46:51 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/19 20:31:59 by rodro            ###   ########.fr       */
+/*   Created: 2023/01/19 19:01:07 by rofuente          #+#    #+#             */
+/*   Updated: 2023/03/28 13:11:52 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../include/libft.h"
 
-void	ft_free(char **s)
+int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int		x;
+	t_list	*aux;
 
-	i = 0;
-	while (s[i])
+	x = 0;
+	aux = lst;
+	while (aux != NULL)
 	{
-		free (s[i]);
-		i++;
+		aux = aux->next;
+		x++;
 	}
-	free (s);
-}
-
-void	ft_error(char *s)
-{
-	ft_putstr_fd(s, STDERR_FILENO);
-	exit (EXIT_FAILURE);
+	return (x);
 }

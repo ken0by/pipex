@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 13:46:51 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/19 20:31:59 by rodro            ###   ########.fr       */
+/*   Created: 2023/01/18 15:32:55 by rofuente          #+#    #+#             */
+/*   Updated: 2023/03/28 13:12:33 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../include/libft.h"
 
-void	ft_free(char **s)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		free (s[i]);
-		i++;
-	}
-	free (s);
-}
-
-void	ft_error(char *s)
-{
-	ft_putstr_fd(s, STDERR_FILENO);
-	exit (EXIT_FAILURE);
+	write(fd, &c, 1);
+	return ;
 }
