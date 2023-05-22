@@ -3,75 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 15:51:15 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/19 20:44:54 by rodro            ###   ########.fr       */
+/*   Created: 2023/05/22 12:10:22 by rofuente          #+#    #+#             */
+/*   Updated: 2023/05/22 13:17:41 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static void	ft_first(int *fd, char **argv, char **com)
+static void	ft_first(int *fd, char **argv, char **env)
 {
 	pid_t	pid;
 	int		file;
 
 	pid = fork();
 	if (pid < 0)
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	if (pid == 0)
 	{
 		file = ft_open(argv[1], 0);
-		close (fd[0]);
+		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
-		close (fd[1]);
+		close(fd[1]);
 		dup2(file, STDIN_FILENO);
-		close (file);
-		ft_command (argv[2], com);
+		close(file);
+		ft_command(argv[2], env);
 	}
 }
 
-static void	ft_last(int *fd, char **argv, char **com)
+static void	ft_last(int *fd, char **argv, char **env)
 {
 	pid_t	pid;
 	int		file;
 
 	pid = fork();
 	if (pid < 0)
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	if (pid == 0)
 	{
-		file = ft_open(argv[4], 1);
-		close (fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
-		close (fd[1]);
-		dup2(file, STDIN_FILENO);
-		close (file);
-		ft_command (argv[3], com);
+		file = ft_open(argv[4], 0);
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		close(fd[0]);
+		dup2(file, STDOUT_FILENO);
+		close(file);
+		ft_command(argv[3], env);
 	}
 }
 
-static void	pipex(char **argv, char **com)
+void	pipex(char **argv, char **env)
 {
 	int	fd[2];
-	int	s;
+	int	status;
 
-	if (pipe(fd) < 0)
-		exit (EXIT_FAILURE);
-	ft_first(fd, argv, com);
-	ft_last(fd, argv, com);
+	pipe(fd);
+	if (fd < 0)
+		exit(EXIT_FAILURE);
+	ft_first(fd, argv, env);
+	ft_last(fd, argv, env);
 	close(fd[0]);
 	close(fd[1]);
-	waitpid(-1, &s, 0);
-	waitpid(-1, &s, 0);
+	waitpid(-1, &status, 0);
+	waitpid(-1, &status, 0);
 }
 
-int	main(int argc, char **argv, char **com)
+int	main(int argc, char **argv, char **env)
 {
 	if (argc == 5)
-		pipex(argv, com);
+		pipex(argv, env);
 	else
 		ft_error("Invalid arguments\n");
-	return (0);
 }
