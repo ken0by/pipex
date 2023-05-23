@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:44:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/22 16:31:31 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:55:44 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static char	*ft_path(char *c, char **env)
 		return (c);
 	p = ft_find_path(env);
 	all_path = ft_split(env[p] + 5, ':');
-	i = -1;
+	i = 0;
 	while (all_path[i++])
 	{
 		slash = ft_strjoin("/", c);
 		path = ft_strjoin(all_path[i], slash);
 		free (slash);
-		if (access(path, X_OK) == 0)
+		if (access(path, F_OK & R_OK) == 0)
 		{
 			free_mtx(all_path);
 			return (path);
@@ -65,7 +65,7 @@ void	ft_command(char *command, char **env)
 	path = ft_path(c[0], env);
 	if (!path)
 	{
-		ft_putstr_fd("Invalid command\n", 2);
+		ft_putstr_fd("Command not found\n", 2);
 		exit (127);
 	}
 	if (execve(path, c, env) == -1)

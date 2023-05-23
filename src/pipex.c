@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:10:22 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/22 16:26:20 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:46:46 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	ft_last(int *fd, char **argv, char **env)
 		exit(EXIT_FAILURE);
 	if (pid == 0)
 	{
-		file = ft_open(argv[4], 0);
+		file = ft_open(argv[4], 1);
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
