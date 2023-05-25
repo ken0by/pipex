@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:44:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/24 16:19:35 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:25:03 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_command(char *command, char **env)
 		exit (127);
 	}
 	if (execve(path, c, env) == -1)
-		exit (1);
+		exit (126);
 }
 
 int	ft_open(char *file, int x)
