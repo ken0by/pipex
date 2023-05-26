@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:08:32 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/22 15:58:55 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:07:44 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void	ft_command(char *command, char **env);
 /* FT_ERROR.C */
 void	ft_error(char *s);
 void	free_mtx(char **mtx);
+void	ft_perror(char *s);
 
 #endif

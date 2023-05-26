@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:10:22 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/23 16:46:46 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:25:47 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_first(int *fd, char **argv, char **env)
 
 	pid = fork();
 	if (pid < 0)
-		exit(EXIT_FAILURE);
+		ft_perror("fork");
 	if (pid == 0)
 	{
 		file = ft_open(argv[1], 0);
@@ -39,7 +39,7 @@ static void	ft_last(int *fd, char **argv, char **env)
 
 	pid = fork();
 	if (pid < 0)
-		exit(EXIT_FAILURE);
+		ft_perror("fork");
 	if (pid == 0)
 	{
 		file = ft_open(argv[4], 1);
@@ -59,7 +59,7 @@ void	pipex(char **argv, char **env)
 
 	pipe(fd);
 	if (fd < 0)
-		exit(EXIT_FAILURE);
+		ft_perror(NULL);
 	ft_first(fd, argv, env);
 	ft_last(fd, argv, env);
 	close(fd[0]);

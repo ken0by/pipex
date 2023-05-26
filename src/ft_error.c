@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:36:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/23 13:31:53 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:06:32 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+
+void	ft_perror(char *s)
+{
+	perror(s);
+	exit(EXIT_FAILURE);
+}
 
 void	free_mtx(char **mtx)
 {
