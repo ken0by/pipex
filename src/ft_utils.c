@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:44:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/26 18:35:41 by rodro            ###   ########.fr       */
+/*   Updated: 2023/06/20 12:50:39 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static char	*ft_path(char *c, char **env)
 		return (c);
 	i = ft_find_path(env);
 	all_path = ft_split(env[i] + 5, ':');
-	i = 0;
-	while (all_path[i++])
+	i = -1;
+	while (all_path[++i])
 	{
 		slash = ft_strjoin("/", c);
 		path = ft_strjoin(all_path[i], slash);
@@ -52,7 +52,7 @@ static char	*ft_path(char *c, char **env)
 		free (path);
 	}
 	free_mtx(all_path);
-	return (0);
+	return (NULL);
 }
 
 void	ft_command(char *command, char **env)
@@ -66,7 +66,8 @@ void	ft_command(char *command, char **env)
 	path = ft_path(c[0], env);
 	if (!path)
 	{
-		ft_putstr_fd("Command not found\n", 2);
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd(": Command not found\n", 2);
 		exit (EXIT_SUCCESS);
 	}
 	if (execve(path, c, env) == -1)
