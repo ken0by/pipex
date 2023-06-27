@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:44:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/06/20 12:50:39 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/06/21 12:41:01 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_command(char *command, char **env)
 	{
 		ft_putstr_fd(command, 2);
 		ft_putstr_fd(": Command not found\n", 2);
-		exit (EXIT_SUCCESS);
+		exit (EXIT_FAILURE);
 	}
 	if (execve(path, c, env) == -1)
 		ft_perror("");
