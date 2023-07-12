@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:36:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/07/12 13:47:11 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:54:52 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,11 @@ void	ft_error(char *command, char *s)
 	ft_putstr_fd(command, STDERR_FILENO);
 	ft_putstr_fd(s, STDERR_FILENO);
 	exit (EXIT_FAILURE);
+}
+
+void	ft_error_perror(char *command, char *s)
+{
+	ft_putstr_fd(command, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_perror(s);
 }

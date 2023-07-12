@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:44:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/07/12 14:06:26 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:55:12 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static char	*ft_path(char *c, char **env)
 	char	*slash;
 	char	*path;
 
-	if (access(c, X_OK) == 0)
-		return (c);
 	i = ft_find_path(env);
 	all_path = ft_split(env[i] + 5, ':');
 	i = -1;
@@ -63,7 +61,7 @@ static int	check_command(char *command)
 		if (access(command, X_OK) == 0)
 			return (1);
 		else
-			ft_error(command, ": Command not found\n");
+			ft_error_perror(command, "");
 	}
 	return (0);
 }
