@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:44:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/06/21 12:41:01 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:06:26 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	ft_find_path(char **env)
 			return (i);
 		i++;
 	}
-	ft_error("Path not found\n");
+	ft_putstr_fd("Path not found\n", STDERR_FILENO);
+	exit (EXIT_FAILURE);
 	return (i);
 }
 
@@ -55,6 +56,18 @@ static char	*ft_path(char *c, char **env)
 	return (NULL);
 }
 
+static int	check_command(char *command)
+{
+	if (command[0] == '.' || command[0] == '/')
+	{
+		if (access(command, X_OK) == 0)
+			return (1);
+		else
+			ft_error(command, ": Command not found\n");
+	}
+	return (0);
+}
+
 void	ft_command(char *command, char **env)
 {
 	char	**c;
@@ -62,13 +75,14 @@ void	ft_command(char *command, char **env)
 
 	c = ft_split(command, ' ');
 	if (!c || !c[0])
-		ft_error("Command not found\n");
-	path = ft_path(c[0], env);
-	if (!path)
+		ft_error(command, ": Command not found\n");
+	if (check_command(c[0]) == 1)
+		path = c[0];
+	else
 	{
-		ft_putstr_fd(command, 2);
-		ft_putstr_fd(": Command not found\n", 2);
-		exit (EXIT_FAILURE);
+		path = ft_path(c[0], env);
+		if (!path)
+			ft_error(command, ": Command not found\n");
 	}
 	if (execve(path, c, env) == -1)
 		ft_perror("");

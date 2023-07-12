@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:36:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/05/26 18:06:32 by rodro            ###   ########.fr       */
+/*   Updated: 2023/07/12 13:47:11 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_perror(char *s)
 {
 	perror(s);
-	exit(EXIT_FAILURE);
+	exit (EXIT_FAILURE);
 }
 
 void	free_mtx(char **mtx)
@@ -28,8 +28,9 @@ void	free_mtx(char **mtx)
 	free(mtx);
 }
 
-void	ft_error(char *s)
+void	ft_error(char *command, char *s)
 {
+	ft_putstr_fd(command, STDERR_FILENO);
 	ft_putstr_fd(s, STDERR_FILENO);
 	exit (EXIT_FAILURE);
 }

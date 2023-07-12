@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:10:22 by rofuente          #+#    #+#             */
-/*   Updated: 2023/06/21 13:42:01 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:36:54 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	ft_last(int *fd, char **argv, char **env)
 	}
 }
 
-void	pipex(char **argv, char **env)
+static void	pipex(char **argv, char **env)
 {
 	int	fd[2];
 	int	status;
@@ -73,5 +73,5 @@ int	main(int argc, char **argv, char **env)
 	if (argc == 5)
 		pipex(argv, env);
 	else
-		ft_error("Invalid arguments\n");
+		ft_error("Invalid", " arguments\n");
 }
