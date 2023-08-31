@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:08:32 by rofuente          #+#    #+#             */
-/*   Updated: 2023/08/31 12:48:12 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:59:09 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 /* ---------- LIBRERIAS ---------- */
 # include "../libft/include/libft.h"
@@ -26,11 +26,11 @@
 # include <sys/wait.h>
 
 /* ---------- FUNCIONES ---------- */
-/* FT_UTILS.C */
+/* FT_UTILS_BONUS.C */
 int		ft_open(char *file, int x);
 void	ft_command(char *command, char **env);
 
-/* FT_ERROR.C */
+/* FT_ERROR_BONUS.C */
 void	ft_error(char *command, char *s, int n);
 void	free_mtx(char **mtx);
 void	ft_perror(char *s, int n);
