@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:44:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/08/31 12:59:53 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:22:10 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	*ft_path(char *c, char **env)
 
 static int	check_command(char *command)
 {
-	if (command[0] == '.' || command[0] == '/')
+	if ((command[0] == '.' && command[1] == '/') || command[0] == '/')
 	{
 		if (access(command, X_OK) == 0)
 			return (1);
