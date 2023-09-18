@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:44:20 by rofuente          #+#    #+#             */
-/*   Updated: 2023/09/13 16:22:10 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:07:30 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,12 @@ int	ft_open(char *file, int x)
 	if (x == 1)
 	{
 		fd = open(file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+		if (access(file, W_OK | R_OK) < 0)
+			ft_perror(file, 1);
+	}
+	if (x == 2)
+	{
+		fd = open(file, O_RDWR | O_CREAT | O_APPEND, 0644);
 		if (access(file, W_OK | R_OK) < 0)
 			ft_perror(file, 1);
 	}

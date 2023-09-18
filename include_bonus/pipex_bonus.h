@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:08:32 by rofuente          #+#    #+#             */
-/*   Updated: 2023/08/31 12:59:09 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:27:03 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include <sys/wait.h>
+
+/* DEFINICION */
+# define INFILE 0
+# define OUTFILE 1
+# define HERE_DOC 2
 
 /* ---------- FUNCIONES ---------- */
 /* FT_UTILS_BONUS.C */
